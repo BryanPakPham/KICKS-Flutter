@@ -73,6 +73,7 @@ flutter:
     - assets/images/products/NK-V5RNR-K/
     - assets/images/products/NK-V5RNRPRE-W/
     - assets/images/products/NK-VOM18-M/
+    - assets/images/
     - assets/videos/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
