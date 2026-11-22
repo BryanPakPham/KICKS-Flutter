@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
+import 'account_screen.dart';
+import 'wishlist_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -18,9 +20,9 @@ class _MainScreenState extends State<MainScreen> {
     // Danh sách các màn hình
     final List<Widget> screens = [
       const HomeScreen(),
-      const Center(child: Text('Wishlist Screen')),
+      const WishlistScreen(),
       const Center(child: Text('Cart Screen')),
-      const Center(child: Text('Account Screen')),
+      const AccountScreen(),
     ];
 
     return Scaffold(
