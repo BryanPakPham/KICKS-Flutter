@@ -232,7 +232,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
                   )
                 : const Icon(
                     Icons.favorite,
-                    color: Colors.black,
+                    color: Colors.red,
                     size: 25,
                   ),
           ),
@@ -269,7 +269,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
             icon: Icons.favorite_border,
             title: 'ĐĂNG NHẬP ĐỂ XEM YÊU THÍCH',
             description:
-                'Vui lòng vào tab Account để đăng nhập '
+                'Vui lòng vào mục Tài khoản để đăng nhập '
                 'và quản lý những đôi giày bạn yêu thích.',
           );
         }
@@ -291,7 +291,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
             if (wishlistSnapshot.hasError) {
               return _buildEmptyState(
                 icon: Icons.cloud_off_outlined,
-                title: 'KHÔNG THỂ TẢI WISHLIST',
+                title: 'KHÔNG THỂ TẢI DANH SÁCH YÊU THÍCH',
                 description:
                     'Vui lòng kiểm tra kết nối Internet '
                     'hoặc quyền truy cập Firebase.',
@@ -315,7 +315,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
                 description:
                     'Những đôi giày bạn yêu thích sẽ '
                     'xuất hiện tại đây.\n'
-                    'Hãy khám phá sản phẩm tại tab Home.',
+                    'Hãy khám phá sản phẩm tại mục Trang chủ.',
               );
             }
 

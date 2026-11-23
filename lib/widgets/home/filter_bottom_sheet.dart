@@ -21,7 +21,7 @@ void showFilterOptions({
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'FILTER & SORT',
+              'BỘ LỌC & SẮP XẾP',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -29,7 +29,7 @@ void showFilterOptions({
             ),
             const SizedBox(height: 15),
             const Text(
-              'Sort by price',
+              'Sắp xếp theo giá',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
@@ -47,8 +47,8 @@ void showFilterOptions({
               },
             ),
             RadioListTile<String>(
-              title: const Text('Price: Low to High'),
-              value: 'Low to High',
+              title: const Text('Giá: Thấp đến cao'),
+              value: 'Thấp đến cao',
               groupValue: selectedSort,
               onChanged: (value) {
                 if (value != null) {
@@ -58,8 +58,8 @@ void showFilterOptions({
               },
             ),
             RadioListTile<String>(
-              title: const Text('Price: High to Low'),
-              value: 'High to Low',
+              title: const Text('Giá: Cao đến thấp'),
+              value: 'Cao đến thấp',
               groupValue: selectedSort,
               onChanged: (value) {
                 if (value != null) {

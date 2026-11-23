@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../Models/product.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../services/wishlist_service.dart';
+import '../services/cart_service.dart';
+import '../utils/format.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   final Product product;
@@ -30,6 +32,66 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   String? _wishlistUserId;
 
   bool _isUpdatingFavorite = false;
+
+  final CartService _cartService = CartService();
+  bool _isAddingToCart = false;
+
+  // Thêm sản phẩm (màu + size đang chọn) vào giỏ hàng
+  Future<void> _addToCart() async {
+    if (_isAddingToCart) return;
+
+    if (selectedSize == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Vui lòng chọn kích cỡ!')),
+      );
+      return;
+    }
+
+    if (FirebaseAuth.instance.currentUser == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Vui lòng đăng nhập để thêm vào giỏ hàng'),
+          backgroundColor: Colors.black,
+        ),
+      );
+      return;
+    }
+
+    setState(() {
+      _isAddingToCart = true;
+    });
+
+    try {
+      await _cartService.addItem(
+        product: widget.product,
+        color: widget.product.colors[selectedColorIndex],
+        size: selectedSize!,
+      );
+
+      if (!mounted) return;
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Đã thêm ${widget.product.name} vào giỏ hàng!'),
+        ),
+      );
+    } catch (e) {
+      if (!mounted) return;
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Không thể thêm vào giỏ hàng. Vui lòng thử lại.'),
+          backgroundColor: Colors.black,
+        ),
+      );
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isAddingToCart = false;
+        });
+      }
+    }
+  }
 
   // Giữ stream Wishlist ổn định
   Stream<Set<int>> _getWishlistStream(String uid) {
@@ -102,7 +164,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         backgroundColor: Colors.white,
         elevation: 0,
         title: const Text(
-          'PRODUCT DETAILS',
+          'CHI TIẾT SẢN PHẨM',
           style: TextStyle(
             color: Colors.black,
             fontSize: 18,
@@ -204,7 +266,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ChoiceChip(
-                        label: const Text('Side View'),
+                        label: const Text('Góc nhìn bên'),
                         selected: !showTopImage,
                         selectedColor: Colors.black,
                         labelStyle: TextStyle(
@@ -222,7 +284,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       const SizedBox(width: 10),
 
                       ChoiceChip(
-                        label: const Text('Top View'),
+                        label: const Text('Góc nhìn trên'),
                         selected: showTopImage,
                         selectedColor: Colors.black,
                         labelStyle: TextStyle(
@@ -263,7 +325,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 
                   // Giá
                   Text(
-                    '${product.price} VND',
+                    formatPrice(product.price),
                     style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
@@ -286,7 +348,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 
                   // CHỌN MÀU
                   const Text(
-                    'SELECT COLOR',
+                    'CHỌN MÀU SẮC',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -328,7 +390,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 
                   // CHỌN SIZE
                   const Text(
-                    'SELECT SIZE',
+                    'CHỌN KÍCH CỠ',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -366,23 +428,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     width: double.infinity,
                     height: 55,
                     child: ElevatedButton(
-                      onPressed: () {
-                        if (selectedSize == null) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Please select a size!'),
-                            ),
-                          );
-                        } else {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                '${product.name} added to cart!',
-                              ),
-                            ),
-                          );
-                        }
-                      },
+                      onPressed: _isAddingToCart ? null : _addToCart,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.black,
                         foregroundColor: Colors.white,
@@ -391,7 +437,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         ),
                       ),
                       child: const Text(
-                        'ADD TO CART',
+                        'THÊM VÀO GIỎ HÀNG',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,

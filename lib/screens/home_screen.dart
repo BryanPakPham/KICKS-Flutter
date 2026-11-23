@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   // 1. QUẢN LÝ DANH MỤC, TÌM KIẾM, SẮP XẾP
   // ==========================================
 
-  String selectedCategory = 'All Shoes';
+  String selectedCategory = 'Tất cả giày';
   String searchQuery = '';
   String selectedSort = 'Default';
 
@@ -144,7 +144,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   const Padding(
                     padding: EdgeInsets.only(bottom: 12),
                     child: Text(
-                      'Không thể đồng bộ Wishlist. '
+                      'Không thể đồng bộ danh sách yêu thích. '
                       'Vui lòng kiểm tra Firebase.',
                       style: TextStyle(
                         color: Colors.red,
@@ -232,7 +232,7 @@ class _HomeScreenState extends State<HomeScreen> {
       final product = entry.value;
 
       final matchesCategory =
-          selectedCategory == 'All Shoes' ||
+          selectedCategory == 'Tất cả giày' ||
           product.categories.contains(selectedCategory);
 
       final matchesSearch = product.name
@@ -243,12 +243,12 @@ class _HomeScreenState extends State<HomeScreen> {
     }).toList();
 
     // Sắp xếp theo giá
-    if (selectedSort == 'Low to High') {
+    if (selectedSort == 'Thấp đến cao') {
       filteredProducts.sort(
         (a, b) =>
             a.value.price.compareTo(b.value.price),
       );
-    } else if (selectedSort == 'High to Low') {
+    } else if (selectedSort == 'Cao đến thấp') {
       filteredProducts.sort(
         (a, b) =>
             b.value.price.compareTo(a.value.price),
@@ -281,7 +281,7 @@ class _HomeScreenState extends State<HomeScreen> {
               // ==============================
 
               const Text(
-                'CATEGORIES',
+                'DANH MỤC SẢN PHẨM',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -347,7 +347,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     MainAxisAlignment.spaceBetween,
                 children: [
                   const Text(
-                    'ALL PRODUCTS',
+                    'TẤT CẢ SẢN PHẨM',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -355,7 +355,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
 
                   Text(
-                    '${filteredProducts.length} Products',
+                    '${filteredProducts.length} sản phẩm',
                     style: const TextStyle(
                       color: Colors.grey,
                       fontSize: 13,
@@ -374,7 +374,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 const Center(
                   child: Padding(
                     padding: EdgeInsets.all(30),
-                    child: Text('No products found'),
+                    child: Text('Không tìm thấy sản phẩm nào'),
                   ),
                 )
               else

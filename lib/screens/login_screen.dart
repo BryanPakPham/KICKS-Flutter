@@ -175,7 +175,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   // EMAIL
                   const Text(
-                    'Email',
+                    'Địa chỉ email',
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
@@ -295,7 +295,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(height: 24),
 
                   const Text(
-                    'KICKS - STEP INTO YOUR STYLE',
+                    'KICKS - TỰ TIN THỂ HIỆN PHONG CÁCH',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 11,

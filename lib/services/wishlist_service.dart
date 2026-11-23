@@ -17,7 +17,7 @@ class WishlistService {
 
     if (user == null) {
       throw StateError(
-        'Vui lòng đăng nhập để sử dụng Wishlist',
+        'Vui lòng đăng nhập để sử dụng danh sách yêu thích',
       );
     }
 

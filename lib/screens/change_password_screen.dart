@@ -481,7 +481,7 @@ class _ChangePasswordScreenState
                   const SizedBox(height: 22),
 
                   const Text(
-                    'KICKS - STEP INTO YOUR STYLE',
+                    'KICKS - TỰ TIN THỂ HIỆN PHONG CÁCH',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 11,

@@ -7,6 +7,7 @@ import 'register_screen.dart';
 import 'login_screen.dart';
 import 'address_screen.dart';
 import 'change_password_screen.dart';
+import 'order_history_screen.dart';
 
 class AccountScreen extends StatelessWidget {
   const AccountScreen({super.key});
@@ -312,6 +313,43 @@ class AccountScreen extends StatelessWidget {
                         ),
                         label: const Text(
                           'ĐỊA CHỈ GIAO HÀNG',
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: 0.5,
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 14),
+
+                    // NÚT ĐƠN HÀNG CỦA TÔI
+                    SizedBox(
+                      height: 52,
+                      child: ElevatedButton.icon(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const OrderHistoryScreen(),
+                            ),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.black,
+                          foregroundColor: Colors.white,
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        icon: const Icon(
+                          Icons.receipt_long_outlined,
+                          size: 20,
+                        ),
+                        label: const Text(
+                          'ĐƠN HÀNG CỦA TÔI',
                           style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w600,

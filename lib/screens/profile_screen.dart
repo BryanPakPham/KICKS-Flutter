@@ -124,7 +124,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     const SizedBox(height: 18),
 
                     _infoField(
-                      label: 'Email',
+                      label: 'Địa chỉ email',
                       value: profile.email,
                       icon: Icons.email_outlined,
                     ),

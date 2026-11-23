@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import '../../Models/product.dart';
+import '../../utils/format.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -71,7 +72,7 @@ class ProductCard extends StatelessWidget {
           ),
           const SizedBox(height: 2),
           Text(
-            '${product.price} VND',
+            formatPrice(product.price),
             style: const TextStyle(
               fontSize: 13,
               color: Colors.grey,

@@ -227,7 +227,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
                   // EMAIL - KHÔNG CHỈNH SỬA
                   const Text(
-                    'Email',
+                    'Địa chỉ email',
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
@@ -240,7 +240,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     initialValue: widget.profile.email,
                     readOnly: true,
                     decoration: _inputDecoration(
-                      hint: 'Email',
+                      hint: 'Địa chỉ email',
                       icon: Icons.email_outlined,
                     ),
                   ),

@@ -26,7 +26,7 @@ class SearchFilter extends StatelessWidget {
             controller: controller,
             onChanged: onSearchChanged,
             decoration: InputDecoration(
-              hintText: 'Search shoes...',
+              hintText: 'Tìm kiếm giày...',
               prefixIcon: const Icon(Icons.search),
               suffixIcon: searchQuery.isNotEmpty
                   ? IconButton(
